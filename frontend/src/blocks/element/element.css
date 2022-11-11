@@ -1,0 +1,13 @@
+.element {
+    background-color: white;
+    border-radius: 10px;
+    box-sizing: border-box;
+    position: relative;
+    max-width: 282px;
+}
+
+@media screen and (max-width: 900px) {
+    .element {
+      margin: auto;
+    }
+  }

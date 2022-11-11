@@ -1,0 +1,7 @@
+.popup__container_item_img {
+    position: relative;
+    padding: 0;
+    background-color: transparent;
+    max-width: max-content;
+    max-height: max-content;
+}

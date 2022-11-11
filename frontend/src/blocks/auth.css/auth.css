@@ -1,0 +1,7 @@
+.auth {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    flex: auto;
+    min-height: 1120px;
+  }
