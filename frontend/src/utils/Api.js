@@ -21,9 +21,12 @@
 
 
 
-    getInitialCards() {
+    getInitialCards(jwt) {
       return fetch(`${this._baseUrl}/cards`, {
-        headers: this._headers
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${jwt}`,
+        }
       })
         .then(res => this._responce(res));
     }

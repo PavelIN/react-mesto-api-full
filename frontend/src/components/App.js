@@ -194,8 +194,15 @@ function App() {
       .getContent(jwt)
       .then((data) => {
         setUserEmail(data.email);
+        setCurrentUser(data);
         setIsLoggedIn(true);
         hist.push('/');
+      })
+      .catch((err) => console.log(err));
+      api
+      .getInitialCards(jwt)
+      .then((initialCards) => {
+        setCards(initialCards)
       })
       .catch((err) => console.log(err));
   };
