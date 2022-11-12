@@ -62,8 +62,9 @@ function App() {
   }
 
   React.useEffect(() => {
+    const jwt = localStorage.getItem('jwt');
     api
-      .getInitialCards()
+      .getInitialCards(jwt)
       .then((data) => {
         setCards(data);
       })
