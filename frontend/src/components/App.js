@@ -40,9 +40,9 @@ function App() {
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
     const isLiked = card.likes.some(i => i === currentUser._id);
-
+    const jwt = localStorage.getItem('jwt');
     // Отправляем запрос в API и получаем обновлённые данные карточки
-    api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
+    api.changeLikeCardStatus(card._id, !isLiked, jwt).then((newCard) => {
       setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
     })
       .catch((err) => {
@@ -51,8 +51,9 @@ function App() {
   }
 
   function handleCardDelete(cardId) {
+    const jwt = localStorage.getItem('jwt');
     api
-      .deleteCard(cardId)
+      .deleteCard(cardId, jwt)
       .then(() => {
         setCards((cards) => cards.filter((card) => card._id !== cardId));
       })
@@ -85,8 +86,9 @@ function App() {
   }, []);
 
   const handleUpdateUser = (newUserInfo) => {
+    const jwt = localStorage.getItem('jwt');
     api
-      .editUserInfo(newUserInfo)
+      .editUserInfo(newUserInfo, jwt)
       .then((data) => {
         setCurrentUser(data);
         closeAllPopups();
@@ -97,8 +99,9 @@ function App() {
   };
 
   const handleUpdateAvatar = (newAvatar) => {
+    const jwt = localStorage.getItem('jwt');
     api
-      .editAvatar(newAvatar)
+      .editAvatar(newAvatar, jwt)
       .then((data) => {
         setCurrentUser(data);
         closeAllPopups();
@@ -109,8 +112,9 @@ function App() {
   };
 
   const handleAddPlaceSubmit = (newData) => {
+    const jwt = localStorage.getItem('jwt');
     api
-      .addCard(newData)
+      .addCard(newData, jwt)
       .then((newCard) => {
         setCards([newCard, ...cards]);
         closeAllPopups();
